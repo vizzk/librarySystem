@@ -9,6 +9,8 @@
     </typeAliases>
 
     <mappers>
-
+        <mapper class="com.library.mapper.BookMapper"/>
+        <mapper class="com.library.mapper.StudentMapper"/>
+        <mapper class="com.library.mapper.ManagerMapper"/>
     </mappers>
 </configuration>

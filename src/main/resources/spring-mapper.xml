@@ -30,6 +30,6 @@
         <!--注入sqlSessionFactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <!--要扫描的包-->
-        <property name="basePackage" value="com.library.dao"/>
+        <property name="basePackage" value="com.library.mapper"/>
     </bean>
 </beans>

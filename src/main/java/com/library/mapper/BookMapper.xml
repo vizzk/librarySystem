@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.library.mapper.BookMapper">
+
+    <select id="getBookByID" resultMap="bookObject">
+        select * from books
+        where no = #{bookID};
+    </select>
+    <select id="listAllBook" resultType="Book">
+        select * from books;
+    </select>
+    <resultMap id="bookObject" type="Book">
+        <id property="no" column="no"/>
+        <result property="publisher" column="publish"/>
+        <result property="publishDate" column="publish_date"/>
+    </resultMap>
+</mapper>
