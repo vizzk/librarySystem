@@ -8,7 +8,9 @@ import com.library.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -41,7 +43,7 @@ public class ManagerController {
                 response =new ResultInfo("fail",2);
             }
         }
-        response.setObj(ispass);
+        response.setData(ispass);
         return JSON.toJSONString(response);
     }
 }

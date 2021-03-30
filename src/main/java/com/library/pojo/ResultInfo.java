@@ -8,7 +8,7 @@ package com.library.pojo;
 public class ResultInfo {
     private String msg;
     private int event;
-    private Object obj;
+    private Object data;
 
     public ResultInfo() {
     }
@@ -16,7 +16,7 @@ public class ResultInfo {
     public ResultInfo(String msg, int event) {
         this.msg = msg;
         this.event = event;
-        obj = null;
+        data = null;
     }
 
     public String getMsg() {
@@ -35,11 +35,11 @@ public class ResultInfo {
         this.event = event;
     }
 
-    public Object getObj() {
-        return obj;
+    public Object getData() {
+        return data;
     }
 
-    public void setObj(Object obj) {
-        this.obj = obj;
+    public void setData(Object data) {
+        this.data = data;
     }
 }

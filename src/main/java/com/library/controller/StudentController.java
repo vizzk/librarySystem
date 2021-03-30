@@ -43,7 +43,7 @@ public class StudentController {
                 response =new ResultInfo("fail",2);
             }
         }
-        response.setObj(ispass);
+        response.setData(ispass);
         return JSON.toJSONString(response);
     }
 
