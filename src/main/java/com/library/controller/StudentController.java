@@ -1,6 +1,7 @@
 package com.library.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.annotation.ResponseJSONP;
 import com.library.pojo.ResultInfo;
 import com.library.pojo.Student;
@@ -30,6 +31,7 @@ public class StudentController {
         //event: 0 不存在账号  1成功  2密码错误
         Student student = studentService.getStudentByID(account);
         ResultInfo response;
+        JSONObject jsonObject = new JSONObject();
         Boolean ispass = false;
         if(student == null){
             response = new ResultInfo("fail",0);
@@ -38,12 +40,15 @@ public class StudentController {
             if(student.getPassword().equals(password)){
                 ispass = true;
                 response = new ResultInfo("success",1);
+                jsonObject.put("account",student.getNumber());
+                jsonObject.put("name",student.getName());
             }
             else{
                 response =new ResultInfo("fail",2);
             }
         }
-        response.setData(ispass);
+        jsonObject.put("isPass",ispass);
+        response.setData(jsonObject);
         return JSON.toJSONString(response);
     }
 
