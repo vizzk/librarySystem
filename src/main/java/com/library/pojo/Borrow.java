@@ -6,29 +6,23 @@ package com.library.pojo;
  * @date ：2021/3/30 11:08
  */
 public class Borrow {
-    private String bookNO;
     private String studentNo;
     private String borrowDate;
     private int resting;
+    private boolean visable;
     private int order;
+    private Book book;
 
     public Borrow() {
     }
 
-    public Borrow(String bookNO, String studentNo, String borrowDate, int resting, int order) {
-        this.bookNO = bookNO;
+    public Borrow(String studentNo, String borrowDate, int resting, boolean visable, int order, Book book) {
         this.studentNo = studentNo;
         this.borrowDate = borrowDate;
         this.resting = resting;
+        this.visable = visable;
         this.order = order;
-    }
-
-    public String getBookNO() {
-        return bookNO;
-    }
-
-    public void setBookNO(String bookNO) {
-        this.bookNO = bookNO;
+        this.book = book;
     }
 
     public String getStudentNo() {
@@ -55,6 +49,14 @@ public class Borrow {
         this.resting = resting;
     }
 
+    public boolean isVisable() {
+        return visable;
+    }
+
+    public void setVisable(boolean visable) {
+        this.visable = visable;
+    }
+
     public int getOrder() {
         return order;
     }
@@ -63,14 +65,23 @@ public class Borrow {
         this.order = order;
     }
 
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
     @Override
     public String toString() {
         return "Borrow{" +
-                "bookNO='" + bookNO + '\'' +
-                ", studentNo='" + studentNo + '\'' +
+                "studentNo='" + studentNo + '\'' +
                 ", borrowDate='" + borrowDate + '\'' +
                 ", resting=" + resting +
+                ", visable=" + visable +
                 ", order=" + order +
+                ", book=" + book +
                 '}';
     }
 }

@@ -17,7 +17,6 @@ public class Book {
     private int length;
     private String located;
 
-
     public Book() {
 
     }
