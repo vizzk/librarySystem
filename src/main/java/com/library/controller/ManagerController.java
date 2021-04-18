@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author ：Vizzk
  * @description：管理员控制器
@@ -27,8 +29,10 @@ public class ManagerController {
 
     @ResponseBody
     @RequestMapping("/managerLogin")
-    public String ManagerLogin(String account, String password){
+    public String ManagerLogin(HttpServletRequest request){
         //event: 0 不存在账号  1成功  2密码错误
+        String account = (String)request.getAttribute("account");
+        String password = (String) request.getAttribute("password");
         Manager manager = managerService.getManagerByID(account);
         ResultInfo response;
         JSONObject jsonObject = new JSONObject();

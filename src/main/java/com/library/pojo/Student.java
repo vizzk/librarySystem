@@ -1,5 +1,7 @@
 package com.library.pojo;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * @author ：Vizzk
  * @description：TODO
@@ -8,6 +10,7 @@ package com.library.pojo;
 public class Student {
     private String name;
     private String number;
+    @JSONField(serialize = false)
     private String password;
     private String email;
     private String phone;

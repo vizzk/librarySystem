@@ -10,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -27,8 +30,10 @@ public class StudentController {
 
     @RequestMapping("/studentLogin")
     @ResponseBody
-    public String studentLogin(String account, String password){
+    public String studentLogin(HttpServletRequest request){
         //event: 0 不存在账号  1成功  2密码错误
+        String account = (String)request.getAttribute("account");
+        String password = (String)request.getAttribute("password");
         Student student = studentService.getStudentByID(account);
         ResultInfo response;
         JSONObject jsonObject = new JSONObject();
@@ -50,6 +55,24 @@ public class StudentController {
         jsonObject.put("isPass",ispass);
         response.setData(jsonObject);
         return JSON.toJSONString(response);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getStudent")
+    public String studentInfo(@RequestBody JSONObject json){
+        //1查无此人  0查询成功
+        String account = (String) json.get("account");
+        Student student = studentService.getStudentByID(account);
+        ResultInfo response = new ResultInfo("success",0);
+        if(student == null){
+            response.setEvent(1);
+        }
+        response.setData(student);
+        return JSON.toJSONString(response);
+    }
+
+    public String updateStudent(){
+        return null;
     }
 
 }
