@@ -9,7 +9,9 @@ import com.library.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.DateFormat;
@@ -32,17 +34,21 @@ public class BorrowController {
 
     @ResponseBody
     @RequestMapping("/borrowRecord")
-    public String getBorrowRecord(String number) throws ParseException {
+    public String getBorrowRecord(@RequestBody JSONObject json) throws ParseException {
         //传入学号查询学生借书记录
         //event 0正常
+        String account = (String) json.get("account");
         ResultInfo response = new ResultInfo("success",0);
-        List<Borrow> list = borrowService.getBorrowBooksByStudentID(number);
+        List<Borrow> list = borrowService.getBorrowBooksByStudentID(account);
+        if(list.isEmpty()){
+            response.setEvent(1);
+        }
         Iterator<Borrow> iterator = list.iterator();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date date;
         while(iterator.hasNext()){
             Borrow record = iterator.next();
-            if(!record.isVisable()){
+            if(!record.isVisible()){
                 iterator.remove();
                 continue;
             }
@@ -51,7 +57,18 @@ public class BorrowController {
             record.setResting(rest);
         }
         response.setData(list);
+        return JSON.toJSONString(response);
+    }
 
+    @RequestMapping(value = "/hideRecord",method = RequestMethod.GET)
+    @ResponseBody
+    public String hideRecord(int order){
+        ResultInfo response = new ResultInfo("success",0);
+        int result = borrowService.updateRecordOnVisible(order);
+        if(result == 0){
+            response.setEvent(1);
+            response.setMsg("fail");
+        }
         return JSON.toJSONString(response);
     }
 }

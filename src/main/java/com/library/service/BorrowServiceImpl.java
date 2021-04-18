@@ -22,4 +22,10 @@ public class BorrowServiceImpl implements BorrowService{
     public List<Borrow> getBorrowBooksByStudentID(String number) {
         return mapper.getBorrowBooksByStudentID(number);
     }
+
+    @Override
+    public int updateRecordOnVisible(int order){
+        return mapper.updateRecordOnVisible(order);
+    }
+
 }

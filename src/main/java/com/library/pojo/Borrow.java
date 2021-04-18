@@ -9,18 +9,18 @@ public class Borrow {
     private String studentNo;
     private String borrowDate;
     private int resting;
-    private boolean visable;
+    private boolean visible;
     private int order;
     private Book book;
 
     public Borrow() {
     }
 
-    public Borrow(String studentNo, String borrowDate, int resting, boolean visable, int order, Book book) {
+    public Borrow(String studentNo, String borrowDate, int resting, boolean visible, int order, Book book) {
         this.studentNo = studentNo;
         this.borrowDate = borrowDate;
         this.resting = resting;
-        this.visable = visable;
+        this.visible = visible;
         this.order = order;
         this.book = book;
     }
@@ -49,12 +49,12 @@ public class Borrow {
         this.resting = resting;
     }
 
-    public boolean isVisable() {
-        return visable;
+    public boolean isVisible() {
+        return visible;
     }
 
-    public void setVisable(boolean visable) {
-        this.visable = visable;
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public int getOrder() {
@@ -79,7 +79,7 @@ public class Borrow {
                 "studentNo='" + studentNo + '\'' +
                 ", borrowDate='" + borrowDate + '\'' +
                 ", resting=" + resting +
-                ", visable=" + visable +
+                ", visible=" + visible +
                 ", order=" + order +
                 ", book=" + book +
                 '}';
