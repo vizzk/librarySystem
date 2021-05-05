@@ -12,17 +12,19 @@ public class Borrow {
     private boolean visible;
     private int order;
     private Book book;
+    private boolean status;
 
     public Borrow() {
     }
 
-    public Borrow(String studentNo, String borrowDate, int resting, boolean visible, int order, Book book) {
+    public Borrow(String studentNo, String borrowDate, int resting, boolean visible, int order, Book book, boolean status) {
         this.studentNo = studentNo;
         this.borrowDate = borrowDate;
         this.resting = resting;
         this.visible = visible;
         this.order = order;
         this.book = book;
+        this.status = status;
     }
 
     public String getStudentNo() {
@@ -73,6 +75,14 @@ public class Borrow {
         this.book = book;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Borrow{" +
@@ -82,6 +92,7 @@ public class Borrow {
                 ", visible=" + visible +
                 ", order=" + order +
                 ", book=" + book +
+                ", status=" + status +
                 '}';
     }
 }

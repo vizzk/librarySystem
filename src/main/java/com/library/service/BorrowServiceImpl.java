@@ -28,4 +28,6 @@ public class BorrowServiceImpl implements BorrowService{
         return mapper.updateRecordOnVisible(order);
     }
 
+    @Override
+    public Borrow getBorrowRecordByBook(String number) {return mapper.getBorrowRecordByBook(number);}
 }

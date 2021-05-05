@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author ：Vizzk
@@ -69,6 +70,63 @@ public class BorrowController {
             response.setEvent(1);
             response.setMsg("fail");
         }
+        return JSON.toJSONString(response);
+    }
+
+    @RequestMapping(value = "/recordNumber",method = RequestMethod.GET)
+    @ResponseBody
+    public String getRecordNumber(String account){
+        //计算总的借阅记录和未归还数
+        ResultInfo response = new ResultInfo("success",0);
+        List<Borrow> list = borrowService.getBorrowBooksByStudentID(account);
+
+        long totalNumber = list.stream().count();
+        long borrowingNumber = list.stream().filter(record -> {return !record.isStatus();}).count();
+
+        JSONObject json = new JSONObject();
+        json.put("total", totalNumber);
+        json.put("borrowingNumber", borrowingNumber);
+        response.setData(json);
+
+        return JSON.toJSONString(response);
+    }
+
+    @RequestMapping(value = "/borrowingBook",method = RequestMethod.GET)
+    @ResponseBody
+    public String getBorrowingBook(String account){
+        //返回待还信息
+        ResultInfo response = new ResultInfo("success",0);
+        List<Borrow> list = borrowService.getBorrowBooksByStudentID(account);
+        final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+
+        List<Borrow> collect = list.stream().filter(record -> {
+            return !record.isStatus();
+        }).map( record -> {
+            Date date = null;
+            try {
+                date = df.parse(record.getBorrowDate());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            int rest = Util.getRestDay(date,record.getResting());
+            record.setResting(rest);
+            return record;
+        }).collect(Collectors.toList());
+
+        response.setData(collect);
+
+        return JSON.toJSONString(response);
+    }
+
+    @RequestMapping(value = "/bookRecord",method = RequestMethod.GET)
+    @ResponseBody
+    public String getRecordByBook(String account){
+        //返回待还信息
+        ResultInfo response = new ResultInfo("success",0);
+
+
+
         return JSON.toJSONString(response);
     }
 }
