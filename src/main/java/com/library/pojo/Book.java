@@ -6,7 +6,7 @@ package com.library.pojo;
  * @date ：2021/3/25 19:09
  */
 public class Book {
-    private int no;
+    private String no;
     private String name;
     private String author;
     private String category;
@@ -21,7 +21,7 @@ public class Book {
 
     }
 
-    public Book(int no, String name, String author, String category, String publisher, String summary, String publishDate, int image, int length, String located) {
+    public Book(String no, String name, String author, String category, String publisher, String summary, String publishDate, int image, int length, String located) {
         this.no = no;
         this.name = name;
         this.author = author;
@@ -34,11 +34,11 @@ public class Book {
         this.located = located;
     }
 
-    public int getNo() {
+    public String getNo() {
         return no;
     }
 
-    public void setNo(int no) {
+    public void setNo(String no) {
         this.no = no;
     }
 

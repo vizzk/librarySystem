@@ -8,12 +8,15 @@
         select * from books
         where no = #{bookID};
     </select>
-    <select id="listAllBook" resultType="Book">
+
+    <select id="listBooks" resultMap="bookObject">
         select * from books;
     </select>
+
     <resultMap id="bookObject" type="Book">
         <id property="no" column="no"/>
         <result property="publisher" column="publish"/>
         <result property="publishDate" column="publish_date"/>
     </resultMap>
+
 </mapper>

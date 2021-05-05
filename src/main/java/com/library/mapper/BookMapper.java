@@ -8,5 +8,5 @@ import java.util.List;
 public interface BookMapper {
 
     Book getBookByID(@Param("bookID") String id);
-    List<Book> listAllBooks();
+    List<Book> listBooks();
 }

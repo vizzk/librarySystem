@@ -63,4 +63,19 @@ public class Test {
             System.out.println(borrow1);
         }
     }
+
+    @org.junit.jupiter.api.Test
+    public void getBookRecord(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        BorrowServiceImpl service = context.getBean("borrowServiceImpl", BorrowServiceImpl.class);
+        Borrow borrow = service.getBorrowRecordByBook("2");
+        System.out.println(borrow);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getlastDate() throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = df.parse("2021-3-25");
+        System.out.println(Util.getDeadline("2021-3-25", 60));
+    }
 }

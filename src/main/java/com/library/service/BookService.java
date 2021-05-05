@@ -12,5 +12,5 @@ import java.util.List;
 public interface BookService {
 
     Book getBookByID(String id);
-    List<Book> listAllBooks();
+    List<Book> listBooks();
 }
