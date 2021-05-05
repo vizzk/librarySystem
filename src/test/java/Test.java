@@ -68,7 +68,7 @@ public class Test {
     public void getBookRecord(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         BorrowServiceImpl service = context.getBean("borrowServiceImpl", BorrowServiceImpl.class);
-        Borrow borrow = service.getBorrowRecordByBook("2");
+        Borrow borrow = service.getBorrowRecordByBook(2);
         System.out.println(borrow);
     }
 

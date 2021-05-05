@@ -119,14 +119,5 @@ public class BorrowController {
         return JSON.toJSONString(response);
     }
 
-    @RequestMapping(value = "/bookRecord",method = RequestMethod.GET)
-    @ResponseBody
-    public String getRecordByBook(String account){
-        //返回待还信息
-        ResultInfo response = new ResultInfo("success",0);
 
-
-
-        return JSON.toJSONString(response);
-    }
 }

@@ -12,6 +12,13 @@
     <select id="listBooks" resultMap="bookObject">
         select * from books;
     </select>
+    
+    <insert id="insertBook" useGeneratedKeys="true" keyProperty="no" parameterType="Book">
+        insert into books(`name`, `author`,`category`, `length`, `publish`,`located`,`summary`)
+        values (#{name}, #{author}, #{category}, #{length}, #{publisher}, #{located}, #{summary})
+    </insert>
+
+
 
     <resultMap id="bookObject" type="Book">
         <id property="no" column="no"/>

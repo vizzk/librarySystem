@@ -29,5 +29,5 @@ public class BorrowServiceImpl implements BorrowService{
     }
 
     @Override
-    public Borrow getBorrowRecordByBook(String number) {return mapper.getBorrowRecordByBook(number);}
+    public Borrow getBorrowRecordByBook(int number) {return mapper.getBorrowRecordByBook(number);}
 }

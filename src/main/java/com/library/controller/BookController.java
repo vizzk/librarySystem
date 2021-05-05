@@ -1,5 +1,6 @@
 package com.library.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.library.pojo.Book;
 import com.library.pojo.Borrow;
@@ -11,6 +12,7 @@ import com.library.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,6 +62,21 @@ public class BookController {
         });
         ResultInfo response = new ResultInfo("success",0);
         response.setData(list);
+        return JSONObject.toJSONString(response);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/saveBook", method = RequestMethod.POST)
+    public String insertBook(@RequestBody JSONObject request){
+        ResultInfo response = new ResultInfo("success", 0);
+
+        Book book = JSONObject.toJavaObject(request, Book.class);
+        int result = bookService.insertBook(book);
+        if(result != 1){
+            response.setEvent(1);
+            response.setMsg("fail");
+        }
+
         return JSONObject.toJSONString(response);
     }
 }
