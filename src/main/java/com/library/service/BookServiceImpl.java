@@ -30,4 +30,9 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public int insertBook(Book book) { return mapper.insertBook(book); }
+
+    @Override
+    public List<Book> getBookByKeyword(String keyword) {
+        return mapper.getBookByKeyword(keyword);
+    }
 }

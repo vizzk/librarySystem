@@ -18,7 +18,11 @@
         values (#{name}, #{author}, #{category}, #{length}, #{publisher}, #{located}, #{summary})
     </insert>
 
-
+    <select id="getBookByKeyword" parameterType="String" resultMap="bookObject">
+        select *
+        from books
+        where `name` like concat('%',#{keyword},'%');
+    </select>
 
     <resultMap id="bookObject" type="Book">
         <id property="no" column="no"/>

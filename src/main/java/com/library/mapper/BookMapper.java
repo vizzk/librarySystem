@@ -10,4 +10,5 @@ public interface BookMapper {
     Book getBookByID(@Param("bookID") String id);
     List<Book> listBooks();
     int insertBook(Book book);
+    List<Book> getBookByKeyword(String keyword);
 }

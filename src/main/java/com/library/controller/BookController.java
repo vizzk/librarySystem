@@ -79,4 +79,34 @@ public class BookController {
 
         return JSONObject.toJSONString(response);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/searchBook", method = RequestMethod.GET)
+    public String searchBook(String keyword){
+        ResultInfo response = new ResultInfo("success", 0);
+
+        final List<JSONObject> list = new ArrayList();
+        List<Book> books = bookService.getBookByKeyword(keyword);
+        books.stream().forEach(book -> {
+            Borrow record = borrowService.getBorrowRecordByBook(book.getNo());
+            JSONObject data = new JSONObject();
+            data.put("book",book);
+            if(record != null){
+                try {
+                    String deadline = Util.getDeadline(record.getBorrowDate(), record.getResting());
+                    data.put("status", false);
+                    data.put("deadline", deadline);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
+                data.put("status", true);
+            }
+            list.add(data);
+        });
+        response.setData(list);
+
+        return JSONObject.toJSONString(response);
+    }
 }

@@ -14,4 +14,6 @@ public interface BookService {
     Book getBookByID(String id);
     List<Book> listBooks();
     int insertBook(Book book);
+    List<Book> getBookByKeyword(String keyword);
+
 }
