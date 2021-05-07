@@ -29,14 +29,7 @@ public class Test {
         Student student = studentServiceImpl.getStudentByID("123");
         System.out.println(student);
     }
-    @org.junit.jupiter.api.Test
-    public void test2(){
-        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-        StudentServiceImpl studentServiceImpl = context.getBean("studentServiceImpl",StudentServiceImpl.class);
-        Student student = new Student("stu2","3","66666","9924","10086",2018,2,"software","male",0);
-        System.out.println(student);
-        studentServiceImpl.insertStudent(student);
-    }
+
     @org.junit.jupiter.api.Test
     public void getBook(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");

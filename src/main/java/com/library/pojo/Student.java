@@ -18,12 +18,13 @@ public class Student {
     private int clazz;
     private String major;
     private String gender;
+    private String nickname;
     private int image;
 
     public Student() {
     }
 
-    public Student(String name, String number, String password, String email, String phone, int grade, int clazz, String major, String gender, int image) {
+    public Student(String name, String number, String password, String email, String phone, int grade, int clazz, String major, String gender, String nickname, int image) {
         this.name = name;
         this.number = number;
         this.password = password;
@@ -33,6 +34,7 @@ public class Student {
         this.clazz = clazz;
         this.major = major;
         this.gender = gender;
+        this.nickname = nickname;
         this.image = image;
     }
 
@@ -116,6 +118,14 @@ public class Student {
         this.image = image;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -128,6 +138,7 @@ public class Student {
                 ", clazz=" + clazz +
                 ", major='" + major + '\'' +
                 ", gender='" + gender + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", image=" + image +
                 '}';
     }

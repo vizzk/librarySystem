@@ -37,4 +37,9 @@
         where `book_no`=#{number} and `status`=false
     </select>
 
+    <select id="getAllRecord" resultMap="borrowBook">
+        select B.*,T.*
+        from books B ,borrow T
+        where B.no = book_no;
+    </select>
 </mapper>

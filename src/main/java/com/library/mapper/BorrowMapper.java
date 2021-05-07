@@ -8,4 +8,5 @@ public interface BorrowMapper {
     List<Borrow> getBorrowBooksByStudentID(String number);
     int updateRecordOnVisible(int order);
     Borrow getBorrowRecordByBook(int number);
+    List<Borrow> getAllRecord();
 }

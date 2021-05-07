@@ -119,5 +119,29 @@ public class BorrowController {
         return JSON.toJSONString(response);
     }
 
+    @RequestMapping(value = "/getAllRecord",method = RequestMethod.GET)
+    @ResponseBody
+    public String getAllRecord(){
+        //返回待还信息
+        ResultInfo response = new ResultInfo("success",0);
+        List<Borrow> list = borrowService.getAllRecord();
+        final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
+        list.stream().map(record -> {
+            try {
+                //未归还
+                if(!record.isStatus()){
+                    Date date = df.parse(record.getBorrowDate());
+                    int rest = Util.getRestDay(date,record.getResting());
+                    record.setResting(rest);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return record;
+        }).collect(Collectors.toList());
+
+        response.setData(list);
+        return JSON.toJSONString(response);
+    }
 }

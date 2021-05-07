@@ -9,8 +9,8 @@
     </select>
 
     <insert id="insertStudent" parameterType="Student">
-        insert into students(number,name,password,email,phone,grade,class,major,gender)
-        values (#{number},#{name},#{password},#{email},#{phone},#{grade},#{clazz},#{major},#{gender});
+        insert into students(`nickname`,`number`,`name`,`password`,`email`,`phone`,`grade`,`class`,`major`)
+        values (#{nickname},#{number},#{name},#{password},#{email},#{phone},#{grade},#{clazz},#{major});
     </insert>
 
     <resultMap id="studentObject" type="Student">

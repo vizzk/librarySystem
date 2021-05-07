@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,8 +72,21 @@ public class StudentController {
         return JSON.toJSONString(response);
     }
 
-    public String updateStudent(){
-        return null;
+    @ResponseBody
+    @RequestMapping(value = "/studentRegister", method = RequestMethod.POST)
+    public String insertStudent(@RequestBody JSONObject request){
+        ResultInfo response = new ResultInfo("success", 0);
+
+        Student student = JSONObject.toJavaObject(request, Student.class);
+        int i = studentService.insertStudent(student);
+        if(i != 1){
+            response.setMsg("fail");
+            response.setEvent(1);
+        }
+
+        return JSONObject.toJSONString(response);
+
+
     }
 
 }

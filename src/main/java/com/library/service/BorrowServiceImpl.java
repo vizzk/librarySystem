@@ -30,4 +30,9 @@ public class BorrowServiceImpl implements BorrowService{
 
     @Override
     public Borrow getBorrowRecordByBook(int number) {return mapper.getBorrowRecordByBook(number);}
+
+    @Override
+    public List<Borrow> getAllRecord() {
+        return mapper.getAllRecord();
+    }
 }
