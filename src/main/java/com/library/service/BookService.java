@@ -15,5 +15,6 @@ public interface BookService {
     List<Book> listBooks();
     int insertBook(Book book);
     List<Book> getBookByKeyword(String keyword);
+    Integer deleteBook(int bookID);
 
 }

@@ -24,6 +24,11 @@
         where `name` like concat('%',#{keyword},'%');
     </select>
 
+    <delete id="deleteBook">
+        delete from `books`
+        where no=#{bookID};
+    </delete>
+
     <resultMap id="bookObject" type="Book">
         <id property="no" column="no"/>
         <result property="publisher" column="publish"/>

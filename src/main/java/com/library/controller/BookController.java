@@ -109,4 +109,18 @@ public class BookController {
 
         return JSONObject.toJSONString(response);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteBook", method = RequestMethod.GET)
+    public String deleteBook(int bookID){
+        ResultInfo response = new ResultInfo("success", 0);
+
+        int result = bookService.deleteBook(bookID);
+        if(result == 0){
+            response.setEvent(1);
+            response.setMsg("fail");
+        }
+
+        return JSONObject.toJSONString(response);
+    }
 }

@@ -35,4 +35,9 @@ public class BookServiceImpl implements BookService{
     public List<Book> getBookByKeyword(String keyword) {
         return mapper.getBookByKeyword(keyword);
     }
+
+    @Override
+    public Integer deleteBook(int bookID) {
+        return mapper.deleteBook(bookID);
+    }
 }
