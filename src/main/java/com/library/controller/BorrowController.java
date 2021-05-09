@@ -144,4 +144,17 @@ public class BorrowController {
         response.setData(list);
         return JSON.toJSONString(response);
     }
+
+    @RequestMapping(value = "/saveBorrow",method = RequestMethod.GET)
+    @ResponseBody
+    public String saveRecord(String account, int bookID){
+        ResultInfo response = new ResultInfo("success",0);
+
+        int i = borrowService.saveBorrowRecord(account, bookID, new Date());
+        if(i == 0){
+            response.setEvent(1);
+            response.setMsg("fail");
+        }
+        return JSON.toJSONString(response);
+    }
 }

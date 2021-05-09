@@ -71,4 +71,11 @@ public class Test {
         Date date1 = df.parse("2021-3-25");
         System.out.println(Util.getDeadline("2021-3-25", 60));
     }
+
+    @org.junit.jupiter.api.Test
+    public void testDate(){
+        Date date = new Date();
+
+        System.out.println(date);
+    }
 }

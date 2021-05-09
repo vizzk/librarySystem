@@ -42,4 +42,9 @@
         from books B ,borrow T
         where B.no = book_no;
     </select>
+
+    <insert id="saveBorrowRecord" >
+        insert into `borrow`(book_no,student_no,borrow_date)
+        values (#{bookID},#{account}, #{date,jdbcType=DATE});
+    </insert>
 </mapper>

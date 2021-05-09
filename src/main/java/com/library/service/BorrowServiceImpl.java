@@ -3,6 +3,7 @@ package com.library.service;
 import com.library.mapper.BorrowMapper;
 import com.library.pojo.Borrow;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,5 +35,10 @@ public class BorrowServiceImpl implements BorrowService{
     @Override
     public List<Borrow> getAllRecord() {
         return mapper.getAllRecord();
+    }
+
+    @Override
+    public Integer saveBorrowRecord(String account, int bookID, Date date) {
+        return mapper.saveBorrowRecord(account, bookID, date);
     }
 }
