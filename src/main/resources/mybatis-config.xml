@@ -14,5 +14,6 @@
         <mapper class="com.library.mapper.ManagerMapper"/>
         <mapper class="com.library.mapper.BorrowMapper"/>
         <mapper class="com.library.mapper.CollectMapper"/>
+        <mapper class="com.library.mapper.EbookMapper"/>
     </mappers>
 </configuration>

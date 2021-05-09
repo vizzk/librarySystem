@@ -34,6 +34,9 @@
     <bean id="collectServiceImpl" class="com.library.service.CollectServiceImpl">
         <property name="mapper" ref="collectMapper"/>
     </bean>
+    <bean id="ebookServiceImpl" class="com.library.service.EbookServiceImpl">
+        <property name="ebookMapper" ref="ebookMapper"/>
+    </bean>
 
 
     <!--声明事务配置-->
