@@ -3,9 +3,12 @@ package com.library.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.annotation.ResponseJSONP;
-import com.library.pojo.ResultInfo;
-import com.library.pojo.Student;
+import com.library.pojo.*;
+import com.library.service.BookService;
+import com.library.service.BorrowService;
+import com.library.service.CollectService;
 import com.library.service.StudentService;
+import com.library.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -28,6 +34,12 @@ public class StudentController {
     @Autowired
     @Qualifier("studentServiceImpl")
     private StudentService studentService;
+    @Autowired
+    @Qualifier("collectServiceImpl")
+    private CollectService collectService;
+    @Autowired
+    @Qualifier("borrowServiceImpl")
+    private BorrowService borrowService;
 
     @RequestMapping("/studentLogin")
     @ResponseBody
@@ -85,8 +97,73 @@ public class StudentController {
         }
 
         return JSONObject.toJSONString(response);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/getCollections", method = RequestMethod.GET)
+    public String getCollectionsByStudentID(String account){
+        ResultInfo response = new ResultInfo("success", 0);
 
+        List<Collect> collections = collectService.getCollectionsByStudentID(account);
+        final List<JSONObject> list = new ArrayList();
+        collections.stream().forEach(collect -> {
+            Borrow record = borrowService.getBorrowRecordByBook(collect.getBook().getNo());
+            JSONObject data = new JSONObject();
+            data.put("collection",collect);
+            if(record != null){
+                try {
+                    String deadline = Util.getDeadline(record.getBorrowDate(), record.getResting());
+                    data.put("status", false);
+                    data.put("deadline", deadline);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            else{
+                data.put("status", true);
+            }
+            list.add(data);
+        });
+        response.setData(list);
 
+        return JSONObject.toJSONString(response);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/saveCollect", method = RequestMethod.GET)
+    public String saveCollect(String account, int bookID){
+        ResultInfo response = new ResultInfo("success", 0);
+        int i = collectService.saveCollect(account, bookID);
+        if(i != 1){
+            response.setMsg("fail");
+            response.setEvent(1);
+        }
+        return JSONObject.toJSONString(response);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/deleteCollect", method = RequestMethod.GET)
+    public String deleteCollect(String account, int bookID){
+        ResultInfo response = new ResultInfo("success", 0);
+        int i = collectService.deleteCollect(account, bookID);
+        if(i == 0){
+            response.setMsg("fail");
+            response.setEvent(1);
+        }
+        return JSONObject.toJSONString(response);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/testCollect", method = RequestMethod.GET)
+    public String testCollect(String account, int bookID){
+        //检测是否已经收藏过
+        ResultInfo response = new ResultInfo("success", 0);
+        response.setData(false);
+        Integer collect = collectService.getCollectByBookAndID(account, bookID);
+        System.out.println(collect);
+        if(collect == null){
+            response.setData(true);
+        }
+
+        return JSONObject.toJSONString(response);
+    }
 }

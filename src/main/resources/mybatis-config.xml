@@ -13,5 +13,6 @@
         <mapper class="com.library.mapper.StudentMapper"/>
         <mapper class="com.library.mapper.ManagerMapper"/>
         <mapper class="com.library.mapper.BorrowMapper"/>
+        <mapper class="com.library.mapper.CollectMapper"/>
     </mappers>
 </configuration>

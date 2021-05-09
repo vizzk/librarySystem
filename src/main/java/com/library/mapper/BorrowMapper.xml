@@ -9,7 +9,7 @@
         <result property="publisher" column="publish"/>
         <result property="publishDate" column="publish_date"/>
     </resultMap>
-    <resultMap id="borrowBook" type="Borrow">
+    <resultMap id="borrowBook" type="Borrow" >
         <id property="order" column="order"/>
         <result property="studentNo" column="student_no"/>
         <result property="borrowDate" column="borrow_date"/>
