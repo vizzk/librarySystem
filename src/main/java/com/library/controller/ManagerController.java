@@ -2,10 +2,12 @@ package com.library.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.library.pojo.Borrow;
 import com.library.pojo.Manager;
 import com.library.pojo.ResultInfo;
 import com.library.pojo.Student;
 import com.library.service.ManagerService;
+import com.library.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author ：Vizzk
@@ -53,6 +56,18 @@ public class ManagerController {
         }
         jsonObject.put("isPass",ispass);
         response.setData(jsonObject);
+        return JSON.toJSONString(response);
+    }
+
+    @ResponseBody
+    @RequestMapping("/getAllStudent")
+    public String getAllStudent(){
+        //event: 0 不存在账号  1成功  2密码错误
+        ResultInfo response = new ResultInfo("success",0);
+
+        List<JSONObject> studentInfo = managerService.getAllStudentInfo();
+        response.setData(studentInfo);
+
         return JSON.toJSONString(response);
     }
 }

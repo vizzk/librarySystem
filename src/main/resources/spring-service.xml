@@ -25,6 +25,8 @@
     </bean>
     <bean id="managerServiceImpl" class="com.library.service.ManagerServiceImpl">
         <property name="mapper" ref="managerMapper"/>
+        <property name="borrowMapper" ref="borrowMapper"/>
+        <property name="studentMapper" ref="studentMapper"/>
     </bean>
     <bean id="borrowServiceImpl" class="com.library.service.BorrowServiceImpl">
         <property name="mapper" ref="borrowMapper"/>

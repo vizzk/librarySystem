@@ -1,7 +1,13 @@
 package com.library.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.library.mapper.BorrowMapper;
 import com.library.mapper.StudentMapper;
+import com.library.pojo.Borrow;
 import com.library.pojo.Student;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ：Vizzk
@@ -10,6 +16,7 @@ import com.library.pojo.Student;
  */
 public class StudentServiceImpl implements StudentService{
     private StudentMapper mapper;
+    private BorrowMapper borrowMapper;
 
     public void setMapper(StudentMapper mapper) {
         this.mapper = mapper;
@@ -24,4 +31,6 @@ public class StudentServiceImpl implements StudentService{
     public int insertStudent(Student student) {
         return mapper.insertStudent(student);
     }
+
+
 }

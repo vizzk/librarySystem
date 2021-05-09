@@ -13,6 +13,9 @@
         values (#{nickname},#{number},#{name},#{password},#{email},#{phone},#{grade},#{clazz},#{major});
     </insert>
 
+    <select id="getAllStudent" resultMap="studentObject">
+        select * from students;
+    </select>
     <resultMap id="studentObject" type="Student">
         <id property="number" column="number"/>
         <result property="clazz" column="class"/>
