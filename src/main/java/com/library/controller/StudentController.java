@@ -159,7 +159,6 @@ public class StudentController {
         ResultInfo response = new ResultInfo("success", 0);
         response.setData(false);
         Integer collect = collectService.getCollectByBookAndID(account, bookID);
-        System.out.println(collect);
         if(collect == null){
             response.setData(true);
         }
