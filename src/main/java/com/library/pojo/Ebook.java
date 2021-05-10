@@ -12,6 +12,15 @@ public class Ebook {
     private String name;
     private String author;
     private String image;
+
+    public List<Chapter> getChapters() {
+        return chapters;
+    }
+
+    public void setChapters(List<Chapter> chapters) {
+        this.chapters = chapters;
+    }
+
     private List<Chapter> chapters;
 
     public Ebook() {

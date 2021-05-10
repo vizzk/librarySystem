@@ -5,8 +5,8 @@
 <mapper namespace="com.library.mapper.EbookMapper">
     <resultMap id="ebook" type="Ebook" autoMapping="true">
         <id property="eid" column="eid"/>
-        <collection property="chapters" ofType="chapter">
-            <id property="eid" column="eid"/>
+        <collection property="chapters" ofType="Chapter">
+            <id property="eid" column="ebook_id"/>
             <id property="cid" column="cid"/>
             <result property="content" column="content"/>
         </collection>
@@ -14,5 +14,11 @@
     <select id="getAllEbook" resultMap="ebook">
         select *
         from `e_book`;
+    </select>
+
+    <select id="listAllChapters" resultMap="ebook">
+        select *
+        from `e_book`, `chapter`
+        where eid = ebook_id and eid = #{eid};
     </select>
 </mapper>

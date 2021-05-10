@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface EbookService {
     List<Ebook> getAllEbook();
+    Ebook listAllChapters(int eid);
 }

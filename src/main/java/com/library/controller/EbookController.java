@@ -27,11 +27,20 @@ public class EbookController {
     private EbookService ebookService;
 
     @ResponseBody
-    @RequestMapping(value = "getAllEbook", method = RequestMethod.GET)
+    @RequestMapping(value = "/getAllEbook", method = RequestMethod.GET)
     public String getAllEbook(){
         ResultInfo response = new ResultInfo("success",0);
         List<Ebook> allEbook = ebookService.getAllEbook();
         response.setData(allEbook);
+        return JSONObject.toJSONString(response);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/getAllChapters", method = RequestMethod.GET)
+    public String getAllChapters(int eid){
+        ResultInfo response = new ResultInfo("success",0);
+        Ebook ebooks = ebookService.listAllChapters(eid);
+        response.setData(ebooks);
         return JSONObject.toJSONString(response);
     }
 }

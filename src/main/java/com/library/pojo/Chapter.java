@@ -8,16 +8,14 @@ package com.library.pojo;
 public class Chapter {
     private String cid;
     private int eid;
-    private int length;
     private String content;
 
     public Chapter() {
     }
 
-    public Chapter(String cid, int eid, int length, String content) {
+    public Chapter(String cid, int eid, String content) {
         this.cid = cid;
         this.eid = eid;
-        this.length = length;
         this.content = content;
     }
 
@@ -37,14 +35,6 @@ public class Chapter {
         this.eid = eid;
     }
 
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
-        this.length = length;
-    }
-
     public String getContent() {
         return content;
     }
@@ -58,7 +48,6 @@ public class Chapter {
         return "Chapter{" +
                 "cid='" + cid + '\'' +
                 ", eid=" + eid +
-                ", length=" + length +
                 ", content='" + content + '\'' +
                 '}';
     }

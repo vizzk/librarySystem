@@ -21,4 +21,9 @@ public class EbookServiceImpl implements EbookService{
     public List<Ebook> getAllEbook() {
         return ebookMapper.getAllEbook();
     }
+
+    @Override
+    public Ebook listAllChapters(int eid) {
+        return ebookMapper.listAllChapters(eid);
+    }
 }
