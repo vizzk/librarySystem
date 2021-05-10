@@ -29,6 +29,11 @@
         where no=#{bookID};
     </delete>
 
+    <select id="listCategories" resultType="java.lang.String">
+        select `category`
+        from `books`;
+    </select>
+
     <resultMap id="bookObject" type="Book">
         <id property="no" column="no"/>
         <result property="publisher" column="publish"/>

@@ -12,4 +12,5 @@ public interface BookMapper {
     int insertBook(Book book);
     List<Book> getBookByKeyword(String keyword);
     Integer deleteBook(int bookID);
+    List<String> listCategories();
 }

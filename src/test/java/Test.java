@@ -12,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -75,7 +76,7 @@ public class Test {
     @org.junit.jupiter.api.Test
     public void testDate(){
         Date date = new Date();
-
+        List<Integer> list = new ArrayList<>();
         System.out.println(date);
     }
 }

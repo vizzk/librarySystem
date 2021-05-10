@@ -8,4 +8,5 @@ public interface StudentMapper {
     Student getStudentById(String number);
     int insertStudent(Student student);
     List<Student> getAllStudent();
+    String getStudentName(String number);
 }

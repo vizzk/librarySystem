@@ -16,6 +16,11 @@
     <select id="getAllStudent" resultMap="studentObject">
         select * from students;
     </select>
+    <select id="getStudentName" resultType="java.lang.String">
+        select `name`
+        from students
+        where number = #{number};
+    </select>
     <resultMap id="studentObject" type="Student">
         <id property="number" column="number"/>
         <result property="clazz" column="class"/>

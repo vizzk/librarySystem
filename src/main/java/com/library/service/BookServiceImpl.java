@@ -1,8 +1,10 @@
 package com.library.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.library.mapper.BookMapper;
 import com.library.pojo.Book;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -39,5 +41,21 @@ public class BookServiceImpl implements BookService{
     @Override
     public Integer deleteBook(int bookID) {
         return mapper.deleteBook(bookID);
+    }
+
+    @Override
+    public JSONObject countCategories() {
+        List<String> list = mapper.listCategories();
+        JSONObject map = new JSONObject();
+        list.forEach(category -> {
+            if(map.containsKey(category)){
+                map.put(category,(Integer)map.get(category)+1);
+            }
+            else{
+                map.put(category,1);
+            }
+        });
+
+        return map;
     }
 }

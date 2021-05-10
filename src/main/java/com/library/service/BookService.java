@@ -1,5 +1,6 @@
 package com.library.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.library.pojo.Book;
 
 import java.util.List;
@@ -16,5 +17,5 @@ public interface BookService {
     int insertBook(Book book);
     List<Book> getBookByKeyword(String keyword);
     Integer deleteBook(int bookID);
-
+    JSONObject countCategories();
 }

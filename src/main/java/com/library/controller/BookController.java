@@ -123,4 +123,14 @@ public class BookController {
 
         return JSONObject.toJSONString(response);
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/countCategories", method = RequestMethod.GET)
+    public String countcategories(){
+        ResultInfo response = new ResultInfo("success", 0);
+
+        JSONObject categories = bookService.countCategories();
+        response.setData(categories);
+        return JSONObject.toJSONString(response);
+    }
 }
