@@ -43,6 +43,12 @@
         where B.no = book_no;
     </select>
 
+    <update id="updateResting" >
+        update borrow
+        set `resting`=`resting`+30
+        where `order`=#{order} and `resting`!=90;
+    </update>
+
     <insert id="saveBorrowRecord" >
         insert into `borrow`(book_no,student_no,borrow_date)
         values (#{bookID},#{account}, #{date,jdbcType=DATE});

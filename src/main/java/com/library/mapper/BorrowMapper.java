@@ -11,5 +11,6 @@ public interface BorrowMapper {
     int updateRecordOnVisible(int order);
     Borrow getBorrowRecordByBook(int number);
     List<Borrow> getAllRecord();
+    Integer updateResting(int order);
     Integer saveBorrowRecord(@Param("account") String account, @Param("bookID") int bookID, @Param("date")Date date);
 }

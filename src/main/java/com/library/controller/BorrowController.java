@@ -124,24 +124,9 @@ public class BorrowController {
     public String getAllRecord(){
         //返回待还信息
         ResultInfo response = new ResultInfo("success",0);
-        List<Borrow> list = borrowService.getAllRecord();
-        final DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        List<JSONObject> records = borrowService.getAllRecord();
 
-        list.stream().map(record -> {
-            try {
-                //未归还
-                if(!record.isStatus()){
-                    Date date = df.parse(record.getBorrowDate());
-                    int rest = Util.getRestDay(date,record.getResting());
-                    record.setResting(rest);
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return record;
-        }).collect(Collectors.toList());
-
-        response.setData(list);
+        response.setData(records);
         return JSON.toJSONString(response);
     }
 
@@ -155,6 +140,21 @@ public class BorrowController {
             response.setEvent(1);
             response.setMsg("fail");
         }
+        return JSON.toJSONString(response);
+    }
+
+    @RequestMapping(value = "/reletBook",method = RequestMethod.GET)
+    @ResponseBody
+    public String updateResting(int order){
+        //返回待还信息
+        ResultInfo response = new ResultInfo("success",0);
+        Integer integer = borrowService.updateResting(order);
+
+        if(integer == 0){
+            response.setMsg("fail");
+            response.setEvent(1);
+        }
+
         return JSON.toJSONString(response);
     }
 }

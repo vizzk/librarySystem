@@ -30,6 +30,7 @@
     </bean>
     <bean id="borrowServiceImpl" class="com.library.service.BorrowServiceImpl">
         <property name="mapper" ref="borrowMapper"/>
+        <property name="studentMapper" ref="studentMapper"/>
     </bean>
     <bean id="collectServiceImpl" class="com.library.service.CollectServiceImpl">
         <property name="mapper" ref="collectMapper"/>

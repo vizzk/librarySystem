@@ -39,7 +39,7 @@ public class ManagerServiceImpl implements ManagerService{
         List<Student> students = studentMapper.getAllStudent();
 
         List<JSONObject> studentInfo = new ArrayList<>();
-        students.stream().forEach(student -> {
+        students.forEach(student -> {
             List<Borrow> list = borrowMapper.getBorrowBooksByStudentID(student.getNumber());
             long totalNumber = list.stream().count();
             long borrowingNumber = list.stream().filter(record -> {return !record.isStatus();}).count();
